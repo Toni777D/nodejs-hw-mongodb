@@ -29,7 +29,7 @@ app.get("/contacts", async (req, res) => {
     })
 })
 
-app.get("/contacts/:contactId", async(req, res) => {
+app.get("/contacts/contactId", async(req, res) => {
    const {id} = req.params;
    const data = await contactServices.getContactById(id);
 
