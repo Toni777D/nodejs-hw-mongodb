@@ -26,26 +26,26 @@ app.get("/contacts", async (req, res) => {
         status: 200,
         message: "Successfully found contacts!",
         data,
-    })
-})
+    });
+});
 
-app.get("/contacts/contactId", async(req, res) => {
+app.get("/contacts/:id", async(req, res) => {
    const {id} = req.params;
    const data = await contactServices.getContactById(id);
 
    if(!data){
    return res.status(404).json({
         message: "Contact not found",
-    })
-   }
+    });
+   };
 
     res.json({
         status: 200,
-        message:`Successfully found contact with id {contactId}`,
+        message:`Successfully found contact with id {id}`,
         data,
-    })
+    });
 
-})
+});
 
 app.use((req, res) => {
     res.status(404).json({
@@ -53,7 +53,7 @@ app.use((req, res) => {
     });
 });
 
-app.use((error, req, res) => {
+app.use((error, req, res, next) => {
     res.status(500).json({
         message: error.message,
     });
