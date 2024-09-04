@@ -41,7 +41,7 @@ app.get("/contacts/:contactId", async(req, res) => {
 
     res.json({
         status: 200,
-        message:`Successfully found contact with id ${id}`,
+        message:`Successfully found contact with id {contactId}`,
         data,
     })
 
