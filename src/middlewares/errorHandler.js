@@ -1,7 +1,7 @@
-const errorHandler = (error, req, res) => {
+const errorHandler = (error, req, res, next) => {
     const {status = 500} = error;
     res.status(status).json({
-        message: "Something went wrong",
+        message: "Contact not found",
 
     });
 };
