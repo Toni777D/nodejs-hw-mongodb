@@ -37,7 +37,7 @@ export const getContactByIdController =  async(req, res) => {
         data,
     })
  }
- export const patchContactController = async(req, res, next) => {
+ export const patchContactController = async(req, res) => {
         const {id} = req.params;
         const result = await contactServices.updateContact({_id: id}, req.body);
 
@@ -52,7 +52,7 @@ export const getContactByIdController =  async(req, res) => {
         });
  };
 
- export const deleteContactController = async(req, res, next) => {
+ export const deleteContactController = async(req, res) => {
     const {id} = req.params;
     const data = await contactServices.deleteContact({_id: id});
 
