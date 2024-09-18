@@ -1,11 +1,15 @@
 import createHttpError from 'http-errors';
 import * as contactServices from '../services/contact.js';
-
-
+import parsePaginationParams from '../utils/parsePaginationParams.js';
+import parseSortParams from '../utils/parseSortParams.js';
+import { sortFields } from '../db/models/Contact.js';
 
 export const getAllContactsController = async (req, res) => {
+    const {perPage, page} = parsePaginationParams(req.query);
+    const {sortBy, sortOrder} = parseSortParams({...req.query, sortFields});
 
-    const data = await contactServices.getAllContacts();
+
+    const data = await contactServices.getAllContacts({perPage, page});
 
     res.json({
         status: 200,
@@ -30,13 +34,15 @@ export const getContactByIdController =  async(req, res) => {
         });
  };
  export const addContactController = async(req, res) => {
+
     const data = await contactServices.creatContact(req.body);
     res.status(201).json({
         status: 201,
         message: "Successfully created a contact!",
         data,
-    })
- }
+    });
+ };
+
  export const patchContactController = async(req, res) => {
         const {id} = req.params;
         const result = await contactServices.updateContact({_id: id}, req.body);
