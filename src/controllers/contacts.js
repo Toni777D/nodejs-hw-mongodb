@@ -9,7 +9,12 @@ export const getAllContactsController = async (req, res) => {
     const {sortBy, sortOrder} = parseSortParams({...req.query, sortFields});
 
 
-    const data = await contactServices.getAllContacts({perPage, page});
+    const data = await contactServices.getAllContacts({
+        perPage,
+        page,
+        sortBy,
+        sortOrder,
+    });
 
     res.json({
         status: 200,
