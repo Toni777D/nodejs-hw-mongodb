@@ -5,6 +5,11 @@ const setupSession = (res, session) => {
         httpOnly: true,
         expire: new Date(Date.now() + session.refreshTokenValidUntil),
     });
+
+    res.cookie("sessionId", session._id, {
+        httpOnly: true,
+        expire: new Date(Date.now() + session.refreshTokenValidUntil),
+    });
 }
 export const registerController = async(req, res) => {
     const newUser = await authServices.register(req.body);
@@ -31,6 +36,10 @@ export const loginController = async(req, res) => {
 
 export const refreshController = async(req, res) => {
     const {refreshToken, sessionId} = req.cookies;
+    // console.log(refreshToken);
+    // console.log(sessionId);
+
+
     const session = await authServices.refreshSession({refreshToken, sessionId});
 
     setupSession(res, session);

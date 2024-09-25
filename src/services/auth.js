@@ -61,10 +61,17 @@ export const login = async(payload) => {
 export const findSessionByAccessToken = accessToken => SessionCollection.findOne({accessToken});
 
 export const refreshSession = async({refreshToken, sessionId}) => {
+    // console.log(refreshToken);
+    // console.log(sessionId);
+
+
     const oldSession = await SessionCollection.findOne({
         _id: sessionId,
         refreshToken,
     });
+
+    // console.log(oldSession);
+
 
     if(!oldSession) {
         throw createHttpError(401, "Session not found");
