@@ -7,7 +7,7 @@ const authenticate = async(req, res, next) => {
     if(!authorization){
         return next(createHttpError(401, "Authorization header not found"))
     }
-    
+
     const [bearer, token] = authorization.split(" ");
     if(bearer !== "Bearer") {
         return next(createHttpError(401, "Authorization header must have Bearer type"))
@@ -27,7 +27,7 @@ const authenticate = async(req, res, next) => {
         return next(createHttpError(401, "User not found"));
     }
 
-    // req.user_id = user;
+    req.user = user;
 
     next();
 };
