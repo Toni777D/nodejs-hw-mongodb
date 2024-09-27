@@ -9,14 +9,12 @@ export const getAllContactsController = async (req, res) => {
     const {sortBy, sortOrder} = parseSortParams({...req.query, sortFields});
     const {_id: userId} = req.user;
 
-    const filter = {userId};
-
     const data = await contactServices.getAllContacts({
         perPage,
         page,
         sortBy,
         sortOrder,
-        filter,
+        userId,
     });
 
     res.json({
