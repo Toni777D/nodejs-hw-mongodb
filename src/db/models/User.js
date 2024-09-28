@@ -16,7 +16,7 @@ const userSchema = new Schema({
     password: {
         type: String,
         required: true,
-    },
+    }
 }, {versionKey: false, timestamps: true});
 
 userSchema.post("save", handleSaveError);
