@@ -1,6 +1,4 @@
 
-
-
 import "dotenv/config";
 
 export const env = (name, defaultValue) => {
