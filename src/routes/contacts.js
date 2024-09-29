@@ -5,6 +5,7 @@ import validateBody from "../utils/validateBody.js";
 import { contactAddSchema, contactPatchSchema } from "../validation/contacts.js";
 import isValidId from "../middlewares/isValdId.js";
 import authenticate from "../middlewares/authenticate.js";
+import upload from "../middlewares/upload.js";
 
 const contactsRouter = Router();
 
@@ -14,9 +15,11 @@ contactsRouter.get("/", ctrlWrapper(getAllContactsController));
 
 contactsRouter.get("/:id",isValidId, ctrlWrapper(getContactByIdController));
 
-contactsRouter.post("/", validateBody(contactAddSchema), ctrlWrapper(addContactController));
+// upload.filds([{name: "poster", maxCount: 1}]) для декілька полів
+// upload.single("poster", 8);  для декількох(8)
+contactsRouter.post("/", upload.single("photo"), validateBody(contactAddSchema), ctrlWrapper(addContactController));
 
-contactsRouter.patch("/:id", isValidId, validateBody(contactPatchSchema), ctrlWrapper(patchContactController));
+contactsRouter.patch("/:id", upload.single("photo"), isValidId, validateBody(contactPatchSchema), ctrlWrapper(patchContactController));
 
 contactsRouter.delete("/:id", isValidId, ctrlWrapper(deleteContactController));
 
