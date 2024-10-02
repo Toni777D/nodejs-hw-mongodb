@@ -81,7 +81,8 @@ export const getContactByIdController =  async(req, res) => {
 
         const updateData = {
             ...req.body,
-            ...(photo && {photo}),
+            photo: photo,
+            // ...(photo && {photo}),
         }
 
         const result = await contactServices.updateContact({_id: id, userId}, updateData);
