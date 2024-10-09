@@ -81,7 +81,6 @@ export const getContactByIdController =  async(req, res) => {
 
         const updateData = {
             ...req.body,
-            // photo: photo,
             ...(photo && {photo}),
         }
 
