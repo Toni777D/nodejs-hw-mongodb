@@ -6,23 +6,33 @@ info:
     name: Apache 2.0
     url: http://www.apache.org/licenses/LICENSE-2.0.html
   description:
-    # <опис вашого додатку>
     This is a documentation of my contacts app
 tags:
-  # теги, що ви будете використовувати
   - name: Contacts
-  description: Operation with contacts
+    description: Operation with contacts.
   - name: Auth
-  description: Auth operation
+    description: Auth operation.
 
 servers:
   - url: http://localhost:3000
-  - url: #посилання на задеплоєний сайт
+  - url: https://example.com/api/v1
+
 paths:
-  # тут будуть посилання на ендпоінти
+
   /contacts:
-  get:
-    $ref: ../swagger/paths/contacts/get.yaml
+    get:
+      $ref: ../swagger/paths/contacts/get.yaml
+    post:
+      $ref: ../swagger/paths/contacts/post.yaml
+
+  /contacts/{id}:
+    get:
+      $ref: ../swagger/paths/contacts/{id}/get.yaml
+    patch:
+      $ref: ../swagger/paths/contacts/{id}/patch.yaml
+    delete:
+      $ref: ../swagger/paths/contacts/{id}/delete.yaml
+
 components:
   securitySchemes:
     bearerAuth:

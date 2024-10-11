@@ -7,6 +7,7 @@ import errorHandler from './middlewares/errorHandler.js';
 import logger from './middlewares/logger.js';
 import authRouter from './routes/auth.js';
 import cookieParser from 'cookie-parser';
+import swaggerDocs from './middlewares/swaggerDocs.js';
 
 export const setupServer = () => {
 
@@ -19,6 +20,7 @@ app.use(cookieParser());
 app.use(express.static("uploads"));
 app.use("/auth", authRouter)
 app.use("/contacts", contactsRouter);
+app.use("/api-docs", swaggerDocs());
 app.use(notFoundHandler);
 app.use(errorHandler);
 
