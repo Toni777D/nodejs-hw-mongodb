@@ -25,6 +25,7 @@
     "description": "",
     "dependencies": {
         "bcrypt": "^5.1.1",
+        "build": "^0.1.4",
         "build-docs": "^1.4.2",
         "cloudinary": "^2.5.0",
         "cookie-parser": "^1.4.6",

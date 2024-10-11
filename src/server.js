@@ -8,6 +8,7 @@ import logger from './middlewares/logger.js';
 import authRouter from './routes/auth.js';
 import cookieParser from 'cookie-parser';
 import swaggerDocs from './middlewares/swaggerDocs.js';
+import { UPLOAD_DIR } from './constans/index.js';
 
 export const setupServer = () => {
 
@@ -18,6 +19,7 @@ app.use(cors());
 app.use(express.json());
 app.use(cookieParser());
 app.use(express.static("uploads"));
+app.use("/uploads", express.static(UPLOAD_DIR));
 app.use("/auth", authRouter)
 app.use("/contacts", contactsRouter);
 app.use("/api-docs", swaggerDocs());
