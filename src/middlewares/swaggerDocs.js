@@ -8,7 +8,7 @@ const swaggerDocs = () => {
 
     try {
         const swaggerContent = readFileSync(SWAGGER_PATH, "utf-8");
-        const swaggerData = JSON.parse(swaggerContent).tostring();
+        const swaggerData = JSON.parse(swaggerContent);
         return [...swaggerUI.serve, swaggerUI.setup(swaggerData)]
     } catch {
         return (req, res, next) => next(createHttpError(500, "Cannot find swagger docs."))
