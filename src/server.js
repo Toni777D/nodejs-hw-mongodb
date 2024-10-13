@@ -19,7 +19,7 @@ app.use(cors());
 app.use(express.json());
 app.use(cookieParser());
 app.use(express.static("uploads"));
-app.use("/uploads", express.static(UPLOAD_DIR));
+// app.use("/uploads", express.static(UPLOAD_DIR));
 app.use("/auth", authRouter)
 app.use("/contacts", contactsRouter);
 app.use("/api-docs", swaggerDocs());
