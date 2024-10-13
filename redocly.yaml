@@ -1,6 +1,4 @@
-# redocly.yaml
 
-# See https://redocly.com/docs/cli/configuration/ for more information.
 apis:
   sample@v1:
     root: docs/openapi.yaml
